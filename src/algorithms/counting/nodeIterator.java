@@ -19,7 +19,7 @@ public class nodeIterator<Vertex,Edge> {
      ArrayList<Vertex> vertices = new ArrayList<>();
 
      //Tree map to keep sorted set, sorted by degree of vertices.
-     TreeMap<Vertex, Integer> orderEdges = new TreeMap<>();
+     TreeMap<Integer, Vertex> orderEdges = new TreeMap<>();
 
     //The original graph
      Graph<Vertex, Edge> graph;
@@ -50,11 +50,11 @@ public class nodeIterator<Vertex,Edge> {
 
             if(!vertices.contains(left)) {
                 vertices.add(left);
-                orderEdges.put(left, leftDegree);
+                orderEdges.put(leftDegree, left);
             }
             if(!vertices.contains(right)){
                 vertices.add(right);
-                orderEdges.put(right, rightDegree);
+                orderEdges.put(rightDegree, right);
             }
 
             this.adjacencies.set(vertices.indexOf(left), vertices.indexOf(right), 1); //We will use the positioning in the arrayList as our x,y
@@ -63,7 +63,7 @@ public class nodeIterator<Vertex,Edge> {
     }
 
     //TODO: Node Iteration Count
-    public int getNumberOfTriangles(){
+    private int getNumberOfTrianglesForNode(){
 
 
         return 0;

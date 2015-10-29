@@ -2,7 +2,7 @@
  * Created by nolan on 2015-10-28.
  */
 
-import algorithms.counting.edgeIterator;
+import algorithms.counting.nodeIterator;
 import core.components.Edge;
 import core.components.Vertex;
 import edu.uci.ics.jung.graph.Graph;
@@ -15,8 +15,7 @@ public class main {
 
        Graph<Vertex, Edge> graph = new Barabasi<>().getGraph(3, 10);
 
-        edgeIterator<Vertex, Edge> eit = new edgeIterator<>();
-        eit.setMatrix(graph);
+        nodeIterator<Vertex, Edge> eit = new nodeIterator<>(graph);
         eit.toStringMatrix();
     }
 
