@@ -1,0 +1,10 @@
+bin/
+.settings/
+.idea/
+
+networxlib.iml
+
+.classpath
+.project
+
+
