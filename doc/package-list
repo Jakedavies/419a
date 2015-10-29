@@ -1,0 +1,10 @@
+algorithms.clustering
+algorithms.connectivity
+algorithms.graphloader
+algorithms.search
+algorithms.sorting
+algorithms.spanningtree
+core.components
+core.tools
+core.visualizer
+generators.random
