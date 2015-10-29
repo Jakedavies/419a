@@ -1,20 +1,15 @@
 package algorithms.counting;
-
 import edu.uci.ics.jung.graph.Graph;
-import edu.uci.ics.jung.graph.util.Pair;
-
 import java.util.Collection;
-import java.util.LinkedHashSet;
-
 
 public class nodeIterator<Vertex,Edge> {
 
-     //Keep a handle on the vertices
-     Collection<Vertex >vertices;
-     LinkedHashSet<Pair<Vertex>> graphEdges = new LinkedHashSet<>();
+    //Keep a handle on the vertices and edges
+    Collection<Vertex >vertices;
+    Collection<Edge> edges;
 
     //The original graph
-     Graph<Vertex, Edge> graph;
+    Graph<Vertex, Edge> graph;
 
     /**
      * Takes in a graph
@@ -22,34 +17,22 @@ public class nodeIterator<Vertex,Edge> {
      */
     public nodeIterator(Graph<Vertex,Edge> graph){
 
-        Collection<Edge> edges = graph.getEdges();
+        this.edges = graph.getEdges();
         this.graph = graph;
         this.vertices = graph.getVertices();
-
-
-        //Break each edge apart. Add them to our set of vertices.
-        for(Edge edge : edges){
-            Pair<Vertex> endpoints = graph.getEndpoints(edge);
-            if(!graphEdges.contains(endpoints)) {
-                graphEdges.add(endpoints);
-            }
-        }
-
-
     }
 
-    //TODO: Node Iteration Count
+    /**
+     * Finds the number of triangles in a graph using the node iterator method.
+     * @return a double with the number of triangles in graph g.
+     */
     public double getNumberOfTriangle(){
         double triangles = 0;
-
-
         for(Vertex v : vertices){
             Collection<Vertex> neighbors = graph.getNeighbors(v);
-
             for(Vertex w : neighbors){
                 for(Vertex k : neighbors){
-
-                    if(graphEdges.contains(new Pair<>(k,w))){
+                    if(edges.contains(graph.findEdge(w,k))){
                         triangles += .5;
                     }
                 }
@@ -57,15 +40,4 @@ public class nodeIterator<Vertex,Edge> {
         }
         return triangles/3;
     }
-
-
-
-    public void toDescriptiveString() {
-        for(Pair p : graphEdges) {
-            System.out.println(p.getFirst() + "," + p.getSecond());
-        }
-    }
-
-
-
 }
