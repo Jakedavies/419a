@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.TreeMap;
 
 
-public class edgeIterator<Vertex,Edge> {
+public class nodeIterator<Vertex,Edge> {
 
      //Our adjacency matrix
      DoubleMatrix2D adjacencies;
@@ -28,7 +28,7 @@ public class edgeIterator<Vertex,Edge> {
      * Takes in a graph
      * @param graph the graph that we would like the number of triangles for.
      */
-    public edgeIterator(Graph<Vertex,Edge> graph){
+    public nodeIterator(Graph<Vertex,Edge> graph){
 
         /*
             We only care about the edges we have.
