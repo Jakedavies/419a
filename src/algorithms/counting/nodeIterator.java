@@ -1,25 +1,17 @@
 package algorithms.counting;
 
-import cern.colt.matrix.DoubleFactory2D;
-import cern.colt.matrix.DoubleMatrix2D;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.TreeMap;
+import java.util.LinkedHashSet;
 
 
 public class nodeIterator<Vertex,Edge> {
 
-     //Our adjacency matrix
-     DoubleMatrix2D adjacencies;
-
      //Keep a handle on the vertices
-     ArrayList<Vertex> vertices = new ArrayList<>();
-
-     //Tree map to keep sorted set, sorted by degree of vertices.
-     TreeMap<Integer, Vertex> orderEdges = new TreeMap<>();
+     Collection<Vertex >vertices;
+     LinkedHashSet<Pair<Vertex>> graphEdges = new LinkedHashSet<>();
 
     //The original graph
      Graph<Vertex, Edge> graph;
@@ -30,49 +22,48 @@ public class nodeIterator<Vertex,Edge> {
      */
     public nodeIterator(Graph<Vertex,Edge> graph){
 
-        /*
-            We only care about the edges we have.
-            Grab the edges and create a matrix size N^2 TODO: Make this smaller n(n-1)?
-         */
         Collection<Edge> edges = graph.getEdges();
-        this.adjacencies = DoubleFactory2D.dense.make(graph.getVertexCount(), graph.getVertexCount());
         this.graph = graph;
+        this.vertices = graph.getVertices();
+
 
         //Break each edge apart. Add them to our set of vertices.
         for(Edge edge : edges){
             Pair<Vertex> endpoints = graph.getEndpoints(edge);
-
-            Vertex left = endpoints.getFirst();
-            int leftDegree = graph.degree(left);
-
-            Vertex right = endpoints.getSecond();
-            int rightDegree = graph.degree(right);
-
-            if(!vertices.contains(left)) {
-                vertices.add(left);
-                orderEdges.put(leftDegree, left);
+            if(!graphEdges.contains(endpoints)) {
+                graphEdges.add(endpoints);
             }
-            if(!vertices.contains(right)){
-                vertices.add(right);
-                orderEdges.put(rightDegree, right);
-            }
-
-            this.adjacencies.set(vertices.indexOf(left), vertices.indexOf(right), 1); //We will use the positioning in the arrayList as our x,y
         }
+
 
     }
 
     //TODO: Node Iteration Count
-    private int getNumberOfTrianglesForNode(){
+    public double getNumberOfTriangle(){
+        double triangles = 0;
 
 
-        return 0;
+        for(Vertex v : vertices){
+            Collection<Vertex> neighbors = graph.getNeighbors(v);
+
+            for(Vertex w : neighbors){
+                for(Vertex k : neighbors){
+
+                    if(graphEdges.contains(new Pair<>(k,w))){
+                        triangles += .5;
+                    }
+                }
+            }
+        }
+        return triangles/3;
     }
 
 
 
-    public void toStringMatrix() {
-        System.out.println(adjacencies);
+    public void toDescriptiveString() {
+        for(Pair p : graphEdges) {
+            System.out.println(p.getFirst() + "," + p.getSecond());
+        }
     }
 
 

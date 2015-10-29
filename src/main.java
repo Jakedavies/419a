@@ -13,10 +13,10 @@ public class main {
 
     public static void main(String[] args){
 
-       Graph<Vertex, Edge> graph = new Barabasi<>().getGraph(3, 10);
+       Graph<Vertex, Edge> graph = new Barabasi<>().getGraph(3, 8);
 
         nodeIterator<Vertex, Edge> eit = new nodeIterator<>(graph);
-        eit.toStringMatrix();
+        System.out.println(eit.getNumberOfTriangle());
     }
 
 
