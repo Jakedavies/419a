@@ -16,7 +16,6 @@ public class nodeIterator<Vertex,Edge> {
      * @param graph the graph that we would like the number of triangles for.
      */
     public nodeIterator(Graph<Vertex,Edge> graph){
-
         this.edges = graph.getEdges();
         this.graph = graph;
         this.vertices = graph.getVertices();
@@ -38,6 +37,6 @@ public class nodeIterator<Vertex,Edge> {
                 }
             }
         }
-        return triangles/3;
+    return triangles/3;
     }
 }
