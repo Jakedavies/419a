@@ -48,26 +48,12 @@ public class pageRank<Vertex,Edge> {
             if(!vertices.contains(right)){
                 vertices.add(right);
             }
-
-            //We will use the positioning in the arrayList as our x,y unless we
+            //We will use the positioning in the arrayList as our x,y.
             this.adjacencies.set(vertices.indexOf(left), vertices.indexOf(right), 1);
         }
-
     }
-
-    //TODO: Node Iteration Count
-    public int getNumberOfTriangles(){
-
-
-        return 0;
-    }
-
-
 
     public void toStringMatrix() {
         System.out.println(adjacencies);
     }
-
-
-
 }
