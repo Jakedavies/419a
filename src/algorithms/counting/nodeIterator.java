@@ -36,14 +36,15 @@ public class nodeIterator<Vertex,Edge> {
             this.degree = d;
             this.vertex = v;
         }
+
         public Vertex getVertex(){
             return this.vertex;
         }
+
         //Comparator so that we can sort
         public int compareTo(Pair p){
             return(p.degree-this.degree);
         }
-
     }
 
     /**
@@ -76,7 +77,6 @@ public class nodeIterator<Vertex,Edge> {
         for(Pair p : orderings){
             v.add(p.getVertex());
         }
-
         return v;
     }
 
