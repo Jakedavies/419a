@@ -7,9 +7,9 @@ import edu.uci.ics.jung.graph.Graph;
 /**
  * Created by jakedavies on 15-11-24.
  */
-public class DegreeDistribution {
+public class degreeDistribution {
     Graph<Vertex,Edge> g;
-    public DegreeDistribution(Graph g){
+    public degreeDistribution(Graph g){
         this.g = g;
     }
     public int[] getNodeRank(){

@@ -28,7 +28,7 @@ public class nodeIterator<Vertex,Edge> {
     /**
      * A pair of objects, the vertex and the degree of the vertex.
      */
-    public class Pair implements Comparable<Pair>{
+    private class Pair implements Comparable<Pair>{
         private int degree;
         private Vertex vertex;
 
